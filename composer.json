@@ -3,8 +3,7 @@
 	"description": "A simple Twitter bot that listen for a given string on Twitter Stream and replies to all tweets which contain it.",
 	"require": {
 		"j3j5/twitterapio": "dev-master",
-		"monolog/monolog": "1.13",
-		"illuminate/queue": "5.0.26"
+		"monolog/monolog": "1.13"
 	},
 	"license": "LGPLv3",
 	"authors": [
