@@ -4,6 +4,8 @@ require __DIR__ . '/vendor/autoload.php';
 use \Monolog\Logger;
 use \Monolog\Handler\StreamHandler;
 
+define("APP_ROOT", __DIR__);
+
 $local_config_file = __DIR__ . '/config.local.php';
 
 /**
@@ -23,20 +25,15 @@ $local_config_file = __DIR__ . '/config.local.php';
  */
 
 $twitter_settings = array(
-	'user_id'			=> 'THE_BOTs_ID',
 	'consumer_key'		=> 'YOUR_CONSUMER_KEY',
 	'consumer_secret'	=> 'YOUR_CONSUMER_SECRET',
 	'token'				=> 'YOUR_TOKEN',
 	'secret'			=> 'YOUR_SECRET',
-	'user_agent'		=> 'REPLY BOT'
+	'user_agent'		=> 'Text-Adventure'
 );
 
-$log = new Logger('reply-bot');
-if(PHP_SAPI == 'cli') {
-	$log->pushHandler(new StreamHandler("php://stdout", Logger::INFO));
-} else {
-	$log->pushHandler(new StreamHandler(dirname(__DIR__) . '/data/logs/reply-bot.log', Logger::DEBUG));
-}
+$minimum_log_level = Logger::DEBUG;
+$log = new Logger('text-adventure');
 
 // Load local config
 if(is_file($local_config_file)) {
