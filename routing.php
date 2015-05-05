@@ -1,4 +1,5 @@
 <?php
+use Monolog\Handler\StreamHandler;
 
 $parameters = array();
 
@@ -6,6 +7,7 @@ include(__DIR__ .  '/custom.routing.php');
 
 // CLI execution
 if(PHP_SAPI == 'cli') {
+	$log->pushHandler(new StreamHandler('php://stdout', $minimum_log_level));
 	if($argc >= 2) {
 		foreach($arguments_structure AS $key => $component) {
 			if(isset($argv[$key+1])) {
@@ -30,6 +32,7 @@ if(PHP_SAPI == 'cli') {
 	$controller = "cli" . DIRECTORY_SEPARATOR ."$controller.php";
 // WEBSERVER
 } else {
+	$log->pushHandler(new StreamHandler(dirname(__DIR__) . '/data/logs/general.log', $minimum_log_level));
 	$uri_segments = FALSE;
 	if(mb_strlen($_SERVER['REQUEST_URI']) > 1) { // Homepage has '/' as REQUEST_URI
 		$uri = $_SERVER['REQUEST_URI'];
