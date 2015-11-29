@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1c7d282bed9f1f12ccf6042809252fdd",
-    "content-hash": "4615e650720f695d1b680884982f2ac9",
+    "hash": "bb83611bf1f8efcafe1d5330c9a78788",
+    "content-hash": "9ae31c88ca63cdec81ff6ab9c86d75b6",
     "packages": [
         {
             "name": "danielstjules/stringy",
@@ -1233,6 +1233,50 @@
             "description": "The Illuminate View package.",
             "homepage": "http://laravel.com",
             "time": "2015-10-19 06:01:02"
+        },
+        {
+            "name": "j3j5/php-twee-parser",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/j3j5/php-twee-parser.git",
+                "reference": "af6de2b2c29b24231c5c5da16054a9a06e50fcc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/j3j5/php-twee-parser/zipball/af6de2b2c29b24231c5c5da16054a9a06e50fcc6",
+                "reference": "af6de2b2c29b24231c5c5da16054a9a06e50fcc6",
+                "shasum": ""
+            },
+            "require": {
+                "monolog/monolog": "~1.13",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "j3j5": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPLv3"
+            ],
+            "authors": [
+                {
+                    "name": "Julio Foulquie",
+                    "email": "jfoulquie@gmail.com",
+                    "homepage": "http://github.com/j3j5"
+                }
+            ],
+            "description": "A PHP parser for JSON Twee files.",
+            "keywords": [
+                "Twee",
+                "Twine",
+                "interactive",
+                "php"
+            ],
+            "time": "2015-05-24 13:10:06"
         },
         {
             "name": "j3j5/twitterapio",
@@ -3405,7 +3449,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "j3j5/twitterapio": 20
+        "j3j5/twitterapio": 20,
+        "j3j5/php-twee-parser": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/lumen-framework": "5.1.*",
         "vlucas/phpdotenv": "~1.0",
-	"j3j5/twitterapio": "dev-master"
+	"j3j5/twitterapio": "dev-master",
+	"j3j5/php-twee-parser": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",
