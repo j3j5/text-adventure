@@ -15,5 +15,13 @@ class CommandServiceProvider extends ServiceProvider
     public function register()
     {
 
+        $this->app->singleton('command.play.story', function()
+        {
+            return new CliGame;
+        });
+
+        $this->commands(
+            'command.play.story'
+        );
     }
 }
