@@ -14,6 +14,14 @@ class CommandServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('command.twitter.stream', function()
+        {
+            return new UserStream;
+        });
+
+        $this->commands(
+            'command.twitter.stream'
+        );
 
         $this->app->singleton('command.play.story', function()
         {
