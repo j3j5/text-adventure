@@ -36,8 +36,13 @@ class CliGame extends Command
     {
         $story_name = $this->argument('story');
         if(is_file(storage_path("app/$story_name.json"))) {
-            $file = storage_path("app/$story_name.json");
-            $this->story = new TweeStory($file);
+            $file_path = storage_path("app/$story_name.json");
+            if (is_readable($file_path)) {
+                $json = file_get_contents($file_path);
+                $this->story = new TweeStory($json);
+            } else {
+                throw new \RuntimeException("The story is NOT readable!");
+            }
         } else {
             throw new \RuntimeException("The story does NOT exist!");
         }
