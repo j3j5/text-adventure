@@ -32,42 +32,17 @@ class TextAdventure {
             }
         }
 
+        Log::info("Processing answer: $answer");
         // Is it one of the links?
         foreach($this->current_passage->links AS $link) {
             if( !empty($answer) && strcasecmp($answer, $link['text']) === 0 ) {
                 $res = $this->story->followLink($link['link']);
                 Log::debug("following link: {$link['link']}", ['next' => $res]);
                 return;
+            } else {
+                Log::debug("There is no link to follow!!", ['link' => $link, 'answer' => $answer]);
             }
         }
-    }
-
-    /**
-     * Process a message from Twitter and decide what tale to load and what to reply.
-     *
-     * @param Array $message
-     *
-     * @return Bool|Array FALSE in case there's no reply, an array containing the text
-     *                      and other extra info.
-     *
-     * @author Julio Foulquié <jfoulquie@gmail.com>
-     */
-    public function processFromTwitter($message) {
-        if(!isset($message['entities']['user_mentions']['screen_name'])) {
-            Log::warning("This tweet is not a mention to any user.");
-            Log::warning(print_r($message, TRUE));
-            return;
-        }
-
-        // Depending on whom the mention is refered to, load a different tale.
-        switch ($message['entities']['user_mentions']['screen_name']) {
-            case "0003Julio":
-                self::test($message);
-                break;
-            default:
-                break;
-        }
-
     }
 
     /**
@@ -88,6 +63,11 @@ class TextAdventure {
     public function getCurrentLinks()
     {
         return $this->getCurrent()->links;
+    }
+
+    public function setStart($last_passage)
+    {
+        return $this->story->moveTo($last_passage);
     }
 
     /**
