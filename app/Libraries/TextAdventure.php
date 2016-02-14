@@ -19,7 +19,7 @@ class TextAdventure {
     public function processAnswer($answer)
     {
         $this->current_passage = $this->story->getCurrentPassage();
-        $answer = $this->sanitizeAnswer($answer);
+        $this->sanitize($answer);
         if($this->allow_manual_navigation) {
             if($answer === 'undo') {
                 $this->story->undo();
@@ -35,6 +35,7 @@ class TextAdventure {
         Log::info("Processing answer: $answer");
         // Is it one of the links?
         foreach($this->current_passage->links AS $link) {
+            $this->sanitize($link['text']);
             if( !empty($answer) && strcasecmp($answer, $link['text']) === 0 ) {
                 $res = $this->story->followLink($link['link']);
                 Log::debug("following link: {$link['link']}", ['next' => $res]);
@@ -77,10 +78,9 @@ class TextAdventure {
      *
      * @return string
      */
-    private function sanitizeAnswer($answer)
+    private function sanitize(&$answer)
     {
-        $answer = str_replace('#', '', $answer);
-        return $answer;
+        $answer = trim(str_replace('#', '', $answer));
     }
 
 }
